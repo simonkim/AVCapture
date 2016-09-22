@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4F183851D93FC860064974E /* AVCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F1837B1D93FC860064974E /* AVCapture.framework */; };
+		F4F1838A1D93FC860064974E /* AVCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183891D93FC860064974E /* AVCaptureTests.swift */; };
+		F4F1838C1D93FC860064974E /* AVCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = F4F1837E1D93FC860064974E /* AVCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4F183A11D93FCBE0064974E /* AudioCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183951D93FCBE0064974E /* AudioCapture.swift */; };
+		F4F183A21D93FCBE0064974E /* AVCaptureClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183961D93FCBE0064974E /* AVCaptureClient.swift */; };
+		F4F183A31D93FCBE0064974E /* AVCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183971D93FCBE0064974E /* AVCaptureService.swift */; };
+		F4F183A41D93FCBE0064974E /* CoreMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183991D93FCBE0064974E /* CoreMedia.swift */; };
+		F4F183A51D93FCBE0064974E /* NALUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F1839A1D93FCBE0064974E /* NALUtil.swift */; };
+		F4F183A61D93FCBE0064974E /* VTCompressionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F1839B1D93FCBE0064974E /* VTCompressionSession.swift */; };
+		F4F183A71D93FCBE0064974E /* VTEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F1839C1D93FCBE0064974E /* VTEncoder.swift */; };
+		F4F183A81D93FCBE0064974E /* BitrateMeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F1839E1D93FCBE0064974E /* BitrateMeasure.swift */; };
+		F4F183A91D93FCBE0064974E /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F1839F1D93FCBE0064974E /* VideoCapture.swift */; };
+		F4F183AA1D93FCBE0064974E /* VTEncoderVideoStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183A01D93FCBE0064974E /* VTEncoderVideoStreamer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4F183861D93FC860064974E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F183721D93FC860064974E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F1837A1D93FC860064974E;
+			remoteInfo = AVCapture;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4F1837B1D93FC860064974E /* AVCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AVCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F1837E1D93FC860064974E /* AVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCapture.h; sourceTree = "<group>"; };
+		F4F1837F1D93FC860064974E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F183841D93FC860064974E /* AVCaptureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVCaptureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F183891D93FC860064974E /* AVCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCaptureTests.swift; sourceTree = "<group>"; };
+		F4F1838B1D93FC860064974E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F183951D93FCBE0064974E /* AudioCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCapture.swift; sourceTree = "<group>"; };
+		F4F183961D93FCBE0064974E /* AVCaptureClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureClient.swift; sourceTree = "<group>"; };
+		F4F183971D93FCBE0064974E /* AVCaptureService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureService.swift; sourceTree = "<group>"; };
+		F4F183991D93FCBE0064974E /* CoreMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreMedia.swift; sourceTree = "<group>"; };
+		F4F1839A1D93FCBE0064974E /* NALUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALUtil.swift; sourceTree = "<group>"; };
+		F4F1839B1D93FCBE0064974E /* VTCompressionSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTCompressionSession.swift; sourceTree = "<group>"; };
+		F4F1839C1D93FCBE0064974E /* VTEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTEncoder.swift; sourceTree = "<group>"; };
+		F4F1839E1D93FCBE0064974E /* BitrateMeasure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitrateMeasure.swift; sourceTree = "<group>"; };
+		F4F1839F1D93FCBE0064974E /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		F4F183A01D93FCBE0064974E /* VTEncoderVideoStreamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTEncoderVideoStreamer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4F183771D93FC860064974E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F183811D93FC860064974E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F183851D93FC860064974E /* AVCapture.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4F183711D93FC860064974E = {
+			isa = PBXGroup;
+			children = (
+				F4F1837D1D93FC860064974E /* AVCapture */,
+				F4F183881D93FC860064974E /* AVCaptureTests */,
+				F4F1837C1D93FC860064974E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4F1837C1D93FC860064974E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4F1837B1D93FC860064974E /* AVCapture.framework */,
+				F4F183841D93FC860064974E /* AVCaptureTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4F1837D1D93FC860064974E /* AVCapture */ = {
+			isa = PBXGroup;
+			children = (
+				F4F1837E1D93FC860064974E /* AVCapture.h */,
+				F4F183951D93FCBE0064974E /* AudioCapture.swift */,
+				F4F183961D93FCBE0064974E /* AVCaptureClient.swift */,
+				F4F183971D93FCBE0064974E /* AVCaptureService.swift */,
+				F4F183981D93FCBE0064974E /* AVEncoderVideoToolbox */,
+				F4F1839D1D93FCBE0064974E /* Misc */,
+				F4F1839F1D93FCBE0064974E /* VideoCapture.swift */,
+				F4F183A01D93FCBE0064974E /* VTEncoderVideoStreamer.swift */,
+				F4F1837F1D93FC860064974E /* Info.plist */,
+			);
+			path = AVCapture;
+			sourceTree = "<group>";
+		};
+		F4F183881D93FC860064974E /* AVCaptureTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4F183891D93FC860064974E /* AVCaptureTests.swift */,
+				F4F1838B1D93FC860064974E /* Info.plist */,
+			);
+			path = AVCaptureTests;
+			sourceTree = "<group>";
+		};
+		F4F183981D93FCBE0064974E /* AVEncoderVideoToolbox */ = {
+			isa = PBXGroup;
+			children = (
+				F4F183991D93FCBE0064974E /* CoreMedia.swift */,
+				F4F1839A1D93FCBE0064974E /* NALUtil.swift */,
+				F4F1839B1D93FCBE0064974E /* VTCompressionSession.swift */,
+				F4F1839C1D93FCBE0064974E /* VTEncoder.swift */,
+			);
+			path = AVEncoderVideoToolbox;
+			sourceTree = "<group>";
+		};
+		F4F1839D1D93FCBE0064974E /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				F4F1839E1D93FCBE0064974E /* BitrateMeasure.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F4F183781D93FC860064974E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F1838C1D93FC860064974E /* AVCapture.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F4F1837A1D93FC860064974E /* AVCapture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F1838F1D93FC860064974E /* Build configuration list for PBXNativeTarget "AVCapture" */;
+			buildPhases = (
+				F4F183761D93FC860064974E /* Sources */,
+				F4F183771D93FC860064974E /* Frameworks */,
+				F4F183781D93FC860064974E /* Headers */,
+				F4F183791D93FC860064974E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AVCapture;
+			productName = AVCapture;
+			productReference = F4F1837B1D93FC860064974E /* AVCapture.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F4F183831D93FC860064974E /* AVCaptureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F183921D93FC860064974E /* Build configuration list for PBXNativeTarget "AVCaptureTests" */;
+			buildPhases = (
+				F4F183801D93FC860064974E /* Sources */,
+				F4F183811D93FC860064974E /* Frameworks */,
+				F4F183821D93FC860064974E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F183871D93FC860064974E /* PBXTargetDependency */,
+			);
+			name = AVCaptureTests;
+			productName = AVCaptureTests;
+			productReference = F4F183841D93FC860064974E /* AVCaptureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4F183721D93FC860064974E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = DZPub.com;
+				TargetAttributes = {
+					F4F1837A1D93FC860064974E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = H4N6D68S33;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					F4F183831D93FC860064974E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = H4N6D68S33;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F4F183751D93FC860064974E /* Build configuration list for PBXProject "AVCapture" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F4F183711D93FC860064974E;
+			productRefGroup = F4F1837C1D93FC860064974E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4F1837A1D93FC860064974E /* AVCapture */,
+				F4F183831D93FC860064974E /* AVCaptureTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4F183791D93FC860064974E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F183821D93FC860064974E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4F183761D93FC860064974E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F183A71D93FCBE0064974E /* VTEncoder.swift in Sources */,
+				F4F183A21D93FCBE0064974E /* AVCaptureClient.swift in Sources */,
+				F4F183A61D93FCBE0064974E /* VTCompressionSession.swift in Sources */,
+				F4F183A11D93FCBE0064974E /* AudioCapture.swift in Sources */,
+				F4F183A91D93FCBE0064974E /* VideoCapture.swift in Sources */,
+				F4F183A81D93FCBE0064974E /* BitrateMeasure.swift in Sources */,
+				F4F183A31D93FCBE0064974E /* AVCaptureService.swift in Sources */,
+				F4F183AA1D93FCBE0064974E /* VTEncoderVideoStreamer.swift in Sources */,
+				F4F183A51D93FCBE0064974E /* NALUtil.swift in Sources */,
+				F4F183A41D93FCBE0064974E /* CoreMedia.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F183801D93FC860064974E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F1838A1D93FC860064974E /* AVCaptureTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4F183871D93FC860064974E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4F1837A1D93FC860064974E /* AVCapture */;
+			targetProxy = F4F183861D93FC860064974E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F4F1838D1D93FC860064974E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F4F1838E1D93FC860064974E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F4F183901D93FC860064974E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H4N6D68S33;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AVCapture/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCapture;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F4F183911D93FC860064974E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H4N6D68S33;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AVCapture/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCapture;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F4F183931D93FC860064974E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = H4N6D68S33;
+				INFOPLIST_FILE = AVCaptureTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F4F183941D93FC860064974E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = H4N6D68S33;
+				INFOPLIST_FILE = AVCaptureTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4F183751D93FC860064974E /* Build configuration list for PBXProject "AVCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F1838D1D93FC860064974E /* Debug */,
+				F4F1838E1D93FC860064974E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F1838F1D93FC860064974E /* Build configuration list for PBXNativeTarget "AVCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F183901D93FC860064974E /* Debug */,
+				F4F183911D93FC860064974E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F4F183921D93FC860064974E /* Build configuration list for PBXNativeTarget "AVCaptureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F183931D93FC860064974E /* Debug */,
+				F4F183941D93FC860064974E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4F183721D93FC860064974E /* Project object */;
+}
