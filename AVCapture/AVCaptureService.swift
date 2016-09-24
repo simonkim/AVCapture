@@ -16,11 +16,9 @@ public protocol AVCaptureServiceClient: class {
 }
 
 public class AVCaptureService {
-    public weak var serviceClient: AVCaptureServiceClient? = nil
-    
-    public static var service: AVCaptureService = {
-       return AVCaptureService()
-    }()
+    public var serviceClient: AVCaptureServiceClient {
+        return _serviceClient
+    }
     
     public var previewLayer: AVCaptureVideoPreviewLayer? {
         return _preview
@@ -34,26 +32,29 @@ public class AVCaptureService {
     
     private var _sessionStarted: Bool = false
     
-    private init()
+    private var _serviceClient: AVCaptureServiceClient
+    
+    public init(client: AVCaptureServiceClient)
     {
-        
+        _serviceClient = client
     }
     
     // MARK:
     func configure(session: AVCaptureSession)
     {
         session.beginConfiguration()
-        serviceClient?.captureService(self, configure: session)
+        serviceClient.captureService(self, configure: session)
         session.commitConfiguration()
     }
     
     // MARK: API
-    public func start()
+    public func start(configured:((Bool)->Void)? = nil)
     {
         if _sessionStarted {
             return
         }
         configure(session: _session)
+        configured?(true)
         _session.startRunning()
         
         _preview = AVCaptureVideoPreviewLayer.init(session: _session)
@@ -65,7 +66,7 @@ public class AVCaptureService {
     
     public func reconfigure()
     {
-        serviceClient?.captureService(self, reset: _session)
+        serviceClient.captureService(self, reset: _session)
         configure(session: _session)
     }
     
@@ -73,7 +74,7 @@ public class AVCaptureService {
     {
         if _sessionStarted {
             
-            serviceClient?.captureService(self, reset: _session)
+            serviceClient.captureService(self, reset: _session)
             
             for input in _session.inputs {
                 _session.removeInput(input as! AVCaptureInput)
