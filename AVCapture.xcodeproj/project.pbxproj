@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F47501391D96C3AB001FA375 /* AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */; };
 		F4F183851D93FC860064974E /* AVCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F1837B1D93FC860064974E /* AVCapture.framework */; };
 		F4F1838A1D93FC860064974E /* AVCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183891D93FC860064974E /* AVCaptureTests.swift */; };
 		F4F1838C1D93FC860064974E /* AVCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = F4F1837E1D93FC860064974E /* AVCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureVideoOrientation.swift; sourceTree = "<group>"; };
 		F4F1837B1D93FC860064974E /* AVCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AVCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F1837E1D93FC860064974E /* AVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCapture.h; sourceTree = "<group>"; };
 		F4F1837F1D93FC860064974E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F1839E1D93FCBE0064974E /* BitrateMeasure.swift */,
+				F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				F4F183A21D93FCBE0064974E /* AVCaptureClient.swift in Sources */,
 				F4F183A61D93FCBE0064974E /* VTCompressionSession.swift in Sources */,
 				F4F183A11D93FCBE0064974E /* AudioCapture.swift in Sources */,
+				F47501391D96C3AB001FA375 /* AVCaptureVideoOrientation.swift in Sources */,
 				F4F183A91D93FCBE0064974E /* VideoCapture.swift in Sources */,
 				F4F183A81D93FCBE0064974E /* BitrateMeasure.swift in Sources */,
 				F4F183A31D93FCBE0064974E /* AVCaptureService.swift in Sources */,
@@ -462,6 +466,7 @@
 				F4F183911D93FC860064974E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4F183921D93FC860064974E /* Build configuration list for PBXNativeTarget "AVCaptureTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +475,7 @@
 				F4F183941D93FC860064974E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
