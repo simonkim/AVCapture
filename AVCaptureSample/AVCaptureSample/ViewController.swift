@@ -28,45 +28,23 @@ class ViewController: UIViewController {
             if !previewLayerSet {
                 view.layer.addSublayer(previewLayer)
                 previewLayerSet = true
+                previewLayer.frame = self.view.layer.bounds
             }
         }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
+
+        guard let previewLayer = self.captureService.previewLayer else {
+            return
+        }
+
         coordinator.animate(alongsideTransition: { (coordinator) in
-            if let previewLayer = self.captureService.previewLayer {
-                previewLayer.frame = self.view.layer.bounds
-            }
-            
         }) { (coordinator) in
             let orientation = UIApplication.shared.statusBarOrientation
-            guard let previewLayer = self.captureService.previewLayer else {
-                return
-            }
-            
-            var videoOrientation: AVCaptureVideoOrientation
-            
-            switch(orientation) {
-            case .portrait:
-                videoOrientation = .portrait
-                break
-            case .portraitUpsideDown:
-                videoOrientation = .portraitUpsideDown
-                break
-            case .landscapeLeft:
-                videoOrientation = .landscapeLeft
-                break
-            case .landscapeRight:
-                videoOrientation = .landscapeRight
-                break
-            default:
-                videoOrientation = .landscapeLeft
-                break
-            }
-            
-            previewLayer.connection.videoOrientation = videoOrientation
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.from(interfaceOrientation: orientation)
+            previewLayer.frame = self.view.layer.bounds
         }
     }
     
@@ -74,7 +52,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
