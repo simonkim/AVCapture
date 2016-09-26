@@ -40,27 +40,38 @@ public class AVCaptureService {
     }
     
     // MARK:
-    func configure(session: AVCaptureSession)
+    func configure(session: AVCaptureSession) -> Bool
     {
+        var result = false
         session.beginConfiguration()
         serviceClient.captureService(self, configure: session)
-        session.commitConfiguration()
+        if session.inputs.count > 0 && session.outputs.count > 0 {
+            result = true
+            session.commitConfiguration()
+        }
+        return result
     }
     
     // MARK: API
-    public func start(configured:((Bool)->Void)? = nil)
+    public func start(configured:((Bool)->Void)? = nil) -> Bool
     {
         if _sessionStarted {
-            return
+            return false
         }
-        configure(session: _session)
-        configured?(true)
-        _session.startRunning()
         
-        _preview = AVCaptureVideoPreviewLayer.init(session: _session)
-        _preview?.videoGravity = AVLayerVideoGravityResizeAspect
+        let succeed = configure(session: _session)
+        configured?(succeed)
         
-        _sessionStarted = true
+        if succeed {
+            _session.startRunning()
+            
+            _preview = AVCaptureVideoPreviewLayer.init(session: _session)
+            _preview?.videoGravity = AVLayerVideoGravityResizeAspect
+            
+            _sessionStarted = true
+        }
+        
+        return succeed
         
     }
     
