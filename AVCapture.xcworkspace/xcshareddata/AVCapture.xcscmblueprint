@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4EB85CE5416B60A5A5F3EF51821A0076EB8DA529",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C3AEE743A16341E8E9FDD710DB5EDFA4DCF90F31" : 9223372036854775807,
+    "4EB85CE5416B60A5A5F3EF51821A0076EB8DA529" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A0A622B1-814C-4F46-8E2E-4AE7DC75FD05",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C3AEE743A16341E8E9FDD710DB5EDFA4DCF90F31" : "",
+    "4EB85CE5416B60A5A5F3EF51821A0076EB8DA529" : "AVCapture\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AVCapture",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AVCapture.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/simonkim\/AVCapture.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4EB85CE5416B60A5A5F3EF51821A0076EB8DA529"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/simonkim\/H264-RTSP-Server-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C3AEE743A16341E8E9FDD710DB5EDFA4DCF90F31"
+    }
+  ]
+}
