@@ -12,6 +12,10 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var preview: UIView!
+    @IBOutlet weak var settingsContainer: UIView!
+    @IBOutlet weak var activityRecording: UIActivityIndicatorView!
+    
     var captureService: AVCaptureService!
     var previewLayerSet: Bool = false
     
@@ -19,24 +23,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // tap to show the settings
+        settingsContainer.isHidden = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapPreviewSurface(_:)))
+        preview.addGestureRecognizer(gesture)
         
         let serviceClient = AVCaptureClientSimple()
         serviceClient.dataDelegate = self
         captureService = AVCaptureService(client: serviceClient)
         if captureService.start() {
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapPreview(_:)))
-            view.addGestureRecognizer(gesture)
         }
-        
     }
 
     override func viewDidLayoutSubviews() {
         if let previewLayer = captureService.previewLayer {
             if !previewLayerSet {
-                view.layer.addSublayer(previewLayer)
+                preview.layer.addSublayer(previewLayer)
                 previewLayerSet = true
-                previewLayer.frame = self.view.layer.bounds
+                previewLayer.frame = preview.layer.bounds
             }
         }
     }
@@ -52,7 +57,7 @@ class ViewController: UIViewController {
         }) { (coordinator) in
             let orientation = UIApplication.shared.statusBarOrientation
             previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.from(interfaceOrientation: orientation)
-            previewLayer.frame = self.view.layer.bounds
+            previewLayer.frame = self.preview.layer.bounds
         }
     }
     
@@ -60,6 +65,52 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+}
+
+extension ViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "captureSettings" {
+            let dest = segue.destination as! CaptureSettingsViewController
+            dest.delegate = self
+        }
+    }
+}
+
+// MARK: Capture Settings
+extension ViewController: CaptureSettingsDelegate {
+
+    func didTapPreviewSurface(_ sender: UIGestureRecognizer) {
+        UIView.animate(withDuration: 0.5) {
+            self.settingsContainer.isHidden = false
+        }
+    }
+
+    func captureSettings(done: CaptureSettingsViewController) {
+        UIView.animate(withDuration: 0.5) { 
+            self.settingsContainer.isHidden = true
+        }
+    }
+    
+    func captureSettings(_ controller:CaptureSettingsViewController, didChange key: CaptureSettingsKey, value: Any? )
+    {
+        switch(key) {
+        case .recording:
+            if let on = value as? Bool {
+                recordingController.toggleRecording(on: on)
+                activityRecording.isHidden = !on
+                if on {
+                    activityRecording.startAnimating()
+                } else {
+                    activityRecording.stopAnimating()
+                }
+            }
+            break
+        default:
+            break
+        }
+    }
+    
 }
 
 extension ViewController: AVCaptureClientDataDelegate {
@@ -75,10 +126,3 @@ extension ViewController: AVCaptureClientDataDelegate {
     }
 }
 
-extension ViewController {
-
-    func didTapPreview(_ sender: UIView)
-    {
-        recordingController.toggleRecording(on: !recordingController.recording)
-    }
-}

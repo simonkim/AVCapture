@@ -16,6 +16,7 @@
 		F475012A1D96B750001FA375 /* AVCaptureSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501291D96B750001FA375 /* AVCaptureSampleTests.swift */; };
 		F47501351D96B7EB001FA375 /* AVCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47501341D96B7EB001FA375 /* AVCapture.framework */; };
 		F47501361D96B7EB001FA375 /* AVCapture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F47501341D96B7EB001FA375 /* AVCapture.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F4D3AABD1D97C0EB00294FB1 /* CaptureSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3AABC1D97C0EB00294FB1 /* CaptureSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		F47501291D96B750001FA375 /* AVCaptureSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCaptureSampleTests.swift; sourceTree = "<group>"; };
 		F475012B1D96B750001FA375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F47501341D96B7EB001FA375 /* AVCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D3AABC1D97C0EB00294FB1 /* CaptureSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				F47501141D96B74F001FA375 /* AppDelegate.swift */,
 				F47501161D96B74F001FA375 /* ViewController.swift */,
 				F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */,
+				F4D3AABC1D97C0EB00294FB1 /* CaptureSettingsViewController.swift */,
 				F47501181D96B74F001FA375 /* Main.storyboard */,
 				F475011B1D96B74F001FA375 /* Assets.xcassets */,
 				F475011D1D96B74F001FA375 /* LaunchScreen.storyboard */,
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D3AABD1D97C0EB00294FB1 /* CaptureSettingsViewController.swift in Sources */,
 				F47501171D96B74F001FA375 /* ViewController.swift in Sources */,
 				F47501151D96B74F001FA375 /* AppDelegate.swift in Sources */,
 				F434E1D21D990F2400E39E44 /* AssetRecordingController.swift in Sources */,
