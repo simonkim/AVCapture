@@ -83,7 +83,7 @@ public class AVCaptureService {
     public func reconfigure()
     {
         serviceClient.captureService(self, reset: _session)
-        configure(session: _session)
+        _ = configure(session: _session)
     }
     
     public func stop()

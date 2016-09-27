@@ -26,6 +26,7 @@ public protocol AVCaptureClient {
 
 public protocol AVCaptureClientDataDelegate {
     func client(client: AVCaptureClient, output sampleBuffer: CMSampleBuffer )
+    func client(client: AVCaptureClient, didConfigureVideoSize videoSize: CGSize )
 }
 
 public class AVCaptureClientSimple: AVCaptureServiceClient {

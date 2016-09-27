@@ -57,7 +57,7 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
                 }
 
                 videoStreamer.videoSize = videoSize
-                
+                dataDelegate?.client(client: self, didConfigureVideoSize: videoSize)
                 output.setSampleBufferDelegate(self, queue: VideoCapture.captureQueue)
 
                 self.input = input
