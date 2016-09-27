@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F434E1D21D990F2400E39E44 /* AssetRecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */; };
 		F47501151D96B74F001FA375 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501141D96B74F001FA375 /* AppDelegate.swift */; };
 		F47501171D96B74F001FA375 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501161D96B74F001FA375 /* ViewController.swift */; };
 		F475011A1D96B74F001FA375 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47501181D96B74F001FA375 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetRecordingController.swift; sourceTree = "<group>"; };
 		F47501111D96B74F001FA375 /* AVCaptureSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVCaptureSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47501141D96B74F001FA375 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47501161D96B74F001FA375 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				F47501141D96B74F001FA375 /* AppDelegate.swift */,
 				F47501161D96B74F001FA375 /* ViewController.swift */,
+				F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */,
 				F47501181D96B74F001FA375 /* Main.storyboard */,
 				F475011B1D96B74F001FA375 /* Assets.xcassets */,
 				F475011D1D96B74F001FA375 /* LaunchScreen.storyboard */,
@@ -166,7 +169,7 @@
 				TargetAttributes = {
 					F47501101D96B74F001FA375 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M42CUUMFKC;
+						DevelopmentTeam = M7ULFZ4G22;
 						ProvisioningStyle = Automatic;
 					};
 					F47501241D96B74F001FA375 = {
@@ -223,6 +226,7 @@
 			files = (
 				F47501171D96B74F001FA375 /* ViewController.swift in Sources */,
 				F47501151D96B74F001FA375 /* AppDelegate.swift in Sources */,
+				F434E1D21D990F2400E39E44 /* AssetRecordingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M42CUUMFKC;
+				DEVELOPMENT_TEAM = M7ULFZ4G22;
 				INFOPLIST_FILE = AVCaptureSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSample;
@@ -374,7 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M42CUUMFKC;
+				DEVELOPMENT_TEAM = M7ULFZ4G22;
 				INFOPLIST_FILE = AVCaptureSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSample;

@@ -15,12 +15,20 @@ class ViewController: UIViewController {
     var captureService: AVCaptureService!
     var previewLayerSet: Bool = false
     
+    var recordingController: AssetRecordingController = AssetRecordingController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        captureService = AVCaptureService(client:AVCaptureClientSimple())
-        captureService.start()
+        let serviceClient = AVCaptureClientSimple()
+        serviceClient.dataDelegate = self
+        captureService = AVCaptureService(client: serviceClient)
+        if captureService.start() {
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapPreview(_:)))
+            view.addGestureRecognizer(gesture)
+        }
+        
     }
 
     override func viewDidLayoutSubviews() {
@@ -54,3 +62,23 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: AVCaptureClientDataDelegate {
+    
+    func client(client: AVCaptureClient, didConfigureVideoSize videoSize: CGSize )
+    {
+        recordingController.videoSize = videoSize
+    }
+    
+    func client(client: AVCaptureClient, output sampleBuffer: CMSampleBuffer )
+    {
+        recordingController.append(sbuf: sampleBuffer)
+    }
+}
+
+extension ViewController {
+
+    func didTapPreview(_ sender: UIView)
+    {
+        recordingController.toggleRecording(on: !recordingController.recording)
+    }
+}
