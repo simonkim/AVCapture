@@ -24,6 +24,11 @@ public class AVCaptureService {
         return _preview
     }
     
+    /// AVCaptureSession's masterClock property
+    public var masterClock: CMClock {
+        return _session.masterClock
+    }
+    
     private lazy var _session: AVCaptureSession = {
        return AVCaptureSession()
     }()
@@ -99,6 +104,4 @@ public class AVCaptureService {
             
         }
     }
-    
-    
 }
