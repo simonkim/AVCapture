@@ -46,9 +46,10 @@ extension VTCompressionSession {
                                                 nil,
                                                 outputCallbackRefCon,
                                                 &session)
-        if ( status == noErr ) {
-            // Sesstion created successfully
-        }
+        if ( status != noErr ) {
+            print("VTCompressionSessionCreate() failed: \(status)")
+        } // else, Sesstion created successfully
+
         return session
     }
 }

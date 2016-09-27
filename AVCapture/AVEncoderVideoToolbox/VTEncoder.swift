@@ -86,12 +86,14 @@ class VTEncoder {
     
     init(width:Int32, height:Int32, bitrate:Int = defaultBitrate) {
         session = VTCompressionSession.create(width: width, height: height)
-        print("Encoder \(width) x \(height) @ \(bitrate)")
         if let session = session {
+            print("Encoder \(width) x \(height) @ \(bitrate)")
             VTSessionSetProperty(session, kVTCompressionPropertyKey_H264EntropyMode, kVTH264EntropyMode_CAVLC)
             VTSessionSetProperty(session, kVTCompressionPropertyKey_RealTime, true as CFTypeRef)
             VTSessionSetProperty(session, kVTCompressionPropertyKey_ProfileLevel, kVTProfileLevel_H264_Main_AutoLevel)
             VTSessionSetProperty(session, kVTCompressionPropertyKey_AverageBitRate, NSNumber(value: bitrate))
+        } else {
+            print("VTEncoder: Failed to create encoder")
         }
     }
     
@@ -141,5 +143,6 @@ class VTEncoder {
         }
         
         VTCompressionSessionCompleteFrames(session, CMTime())
+        VTCompressionSessionInvalidate(session)
     }
 }
