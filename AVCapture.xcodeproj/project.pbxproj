@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F434E1B81D98DD9B00E39E44 /* AVCFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */; };
 		F47501391D96C3AB001FA375 /* AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */; };
 		F4F183851D93FC860064974E /* AVCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F1837B1D93FC860064974E /* AVCapture.framework */; };
 		F4F1838A1D93FC860064974E /* AVCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183891D93FC860064974E /* AVCaptureTests.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCFileWriter.swift; sourceTree = "<group>"; };
 		F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureVideoOrientation.swift; sourceTree = "<group>"; };
 		F4F1837B1D93FC860064974E /* AVCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AVCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F1837E1D93FC860064974E /* AVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCapture.h; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				F4F1839F1D93FCBE0064974E /* VideoCapture.swift */,
 				F4F183A01D93FCBE0064974E /* VTEncoderVideoStreamer.swift */,
 				F4F1837F1D93FC860064974E /* Info.plist */,
+				F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */,
 			);
 			path = AVCapture;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F183A71D93FCBE0064974E /* VTEncoder.swift in Sources */,
+				F434E1B81D98DD9B00E39E44 /* AVCFileWriter.swift in Sources */,
 				F4F183A21D93FCBE0064974E /* AVCaptureClient.swift in Sources */,
 				F4F183A61D93FCBE0064974E /* VTCompressionSession.swift in Sources */,
 				F4F183A11D93FCBE0064974E /* AudioCapture.swift in Sources */,

@@ -35,10 +35,33 @@ extension CMVideoFormatDescription {
     }
 }
 
-extension CMSampleBuffer {
+public extension CMSampleBuffer {
     public var formatDescription: CMFormatDescription?
     {
         return CMSampleBufferGetFormatDescription(self)
+    }
+    
+    public var sampleTimingInfo: CMSampleTimingInfo? {
+        get {
+            var timingInfo: CMSampleTimingInfo? = CMSampleTimingInfo()
+            let status = CMSampleBufferGetSampleTimingInfo(self, 0, &timingInfo!)
+            if ( status != noErr ) {
+                timingInfo = nil
+            }
+            return timingInfo
+        }
+    }
+    
+    public var presentationTimeStamp: CMTime {
+        return CMSampleBufferGetPresentationTimeStamp(self)
+    }
+    
+    public var decodeTimeStamp: CMTime {
+        return CMSampleBufferGetDecodeTimeStamp(self)
+    }
+    
+    public func makeDataReady() -> OSStatus {
+        return CMSampleBufferMakeDataReady(self)
     }
 }
 
