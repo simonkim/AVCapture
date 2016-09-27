@@ -74,6 +74,7 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
         session.removeInput(input)
         videoStreamer.stop()
         videoStreamer = VTEncoderVideoStreamer(preferredBitrate: preferredBitrate)
+        videoStreamer.onOutput = onOutput
     }
     
     func stop() {
