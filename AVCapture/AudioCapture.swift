@@ -21,6 +21,7 @@ class AudioCapture: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate, AVCa
     
     private var input: AVCaptureDeviceInput? = nil
     private var output: AVCaptureAudioDataOutput? = nil
+    private var options: [AVCaptureClientOptionKey] = []
     
     func configure(session: AVCaptureSession) {
         
@@ -66,4 +67,10 @@ class AudioCapture: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate, AVCa
     {
         dataDelegate = delegate
     }
+    
+    func set(options: [AVCaptureClientOptionKey])
+    {
+        self.options = options
+    }
+    
 }

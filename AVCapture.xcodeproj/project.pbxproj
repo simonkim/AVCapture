@@ -97,11 +97,11 @@
 			children = (
 				F4F1837E1D93FC860064974E /* AVCapture.h */,
 				F4F183951D93FCBE0064974E /* AudioCapture.swift */,
+				F4F1839F1D93FCBE0064974E /* VideoCapture.swift */,
 				F4F183961D93FCBE0064974E /* AVCaptureClient.swift */,
 				F4F183971D93FCBE0064974E /* AVCaptureService.swift */,
 				F4F183981D93FCBE0064974E /* AVEncoderVideoToolbox */,
 				F4F1839D1D93FCBE0064974E /* Misc */,
-				F4F1839F1D93FCBE0064974E /* VideoCapture.swift */,
 				F4F183A01D93FCBE0064974E /* VTEncoderVideoStreamer.swift */,
 				F4F1837F1D93FC860064974E /* Info.plist */,
 				F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */,

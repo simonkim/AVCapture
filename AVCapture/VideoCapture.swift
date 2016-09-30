@@ -17,7 +17,11 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     var preferredDevicePosition = AVCaptureDevicePosition.back
     var preferredSessionPreset = AVCaptureSessionPreset1280x720
     var preferredBitrate: Int = 1024 * 1024
-    var videoStreamer: VTEncoderVideoStreamer
+    private var encode: Bool = false
+    private var options: [AVCaptureClientOptionKey] = []
+    
+    private var encoder: VTEncoder? = nil
+    
     var videoSize = CGSize(width: 1920, height: 1080)
     
     private static var captureQueue: DispatchQueue = {
@@ -28,10 +32,7 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     private var output: AVCaptureVideoDataOutput? = nil
     
     override init() {
-        videoStreamer = VTEncoderVideoStreamer(preferredBitrate: preferredBitrate)
         super.init()
-        
-        videoStreamer.onOutput = onOutput
     }
     
     func configure(session:AVCaptureSession) {
@@ -56,7 +57,16 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
                     videoSize = CGSize(width: width, height: height)
                 }
 
-                videoStreamer.videoSize = videoSize
+                if encode {
+                    encoder = VTEncoder(width: Int32(videoSize.width),
+                                        height: Int32(videoSize.height),
+                                        bitrate: preferredBitrate)
+                    encoder?.onEncoded = { status, infoFlags, sampleBuffer in
+                        if let sampleBuffer = sampleBuffer, status == noErr {
+                            self.onOutput(sampleBuffer)
+                        }
+                    }
+                }
                 dataDelegate?.client(client: self, didConfigureVideoSize: videoSize)
                 output.setSampleBufferDelegate(self, queue: VideoCapture.captureQueue)
 
@@ -72,18 +82,22 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     {
         session.removeOutput(output)
         session.removeInput(input)
-        videoStreamer.stop()
-        videoStreamer = VTEncoderVideoStreamer(preferredBitrate: preferredBitrate)
-        videoStreamer.onOutput = onOutput
+        
+        stop()
     }
     
     func stop() {
-        videoStreamer.stop()
+        encoder?.close()
+        encoder = nil
     }
     
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     internal func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        videoStreamer.add(sampleBuffer: sampleBuffer)
+        if encoder != nil {
+            encoder!.encode(sampleBuffer: sampleBuffer)
+        } else {
+            onOutput(sampleBuffer)
+        }
     }
 
     private func captureDevice(with position:AVCaptureDevicePosition) -> AVCaptureDevice? {
@@ -122,6 +136,29 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     func setDataDelegate(_ delegate: AVCaptureClientDataDelegate?)
     {
         dataDelegate = delegate
+    }
+    
+    func set(options: [AVCaptureClientOptionKey])
+    {
+        self.options = options
+        for option in options {
+            switch(option) {
+            case .encodeVideo(let enable):
+                self.encode = enable
+                break
+                
+            case .AVCaptureSessionPreset(let preset):
+                preferredSessionPreset = preset
+                break
+                
+            case .videoBitrate(let bitrate):
+                preferredBitrate = bitrate
+                break
+                
+            default:
+                break
+            }
+        }
     }
     
     // MARK: VTEncoderVideoStreamer

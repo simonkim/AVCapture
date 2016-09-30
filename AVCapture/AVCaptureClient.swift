@@ -9,6 +9,14 @@
 import Foundation
 import AVFoundation
 
+
+public enum AVCaptureClientOptionKey {
+    case encodeVideo(Bool)
+    case videoBitrate(Int)
+    case encodeAudio(Bool)
+    case AVCaptureSessionPreset(String)
+}
+
 public enum AVCaptureClientSettingKey {
     case AVCaptureSessionPreset
     case bitrate
@@ -22,6 +30,7 @@ public protocol AVCaptureClient {
     func reset(session:AVCaptureSession)
     func set(value: Any, forKey key: AVCaptureClientSettingKey)
     func setDataDelegate(_ delegate: AVCaptureClientDataDelegate?)
+    func set(options: [AVCaptureClientOptionKey])
 }
 
 public protocol AVCaptureClientDataDelegate {
@@ -39,6 +48,10 @@ public class AVCaptureClientSimple: AVCaptureServiceClient {
         }
     }
     
+    public var options: [AVCaptureClientOptionKey] = [
+        .encodeVideo(true)
+    ]
+    
     public var videoCapture: AVCaptureClient {
         return clients[1]
     }
@@ -53,6 +66,7 @@ public class AVCaptureClientSimple: AVCaptureServiceClient {
     
     public func captureService(_ service: AVCaptureService, configure session: AVCaptureSession) {
         for client in clients {
+            client.set(options: options)
             client.configure(session: session)
         }
     }
