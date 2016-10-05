@@ -17,6 +17,9 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     var preferredDevicePosition = AVCaptureDevicePosition.back
     var preferredSessionPreset = AVCaptureSessionPreset1280x720
     var preferredBitrate: Int = 1024 * 1024
+    var preferredVideoDimensions: CMVideoDimensions? = CMVideoDimensions(width: 1280, height: 720)
+    var preferredVideoFrameRate: Float64? = 30.0
+    
     private var encode: Bool = false
     private var options: [AVCaptureClientOptionKey] = []
     
@@ -38,12 +41,32 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     func configure(session:AVCaptureSession) {
         
         if let device = captureDevice(with: preferredDevicePosition) {
+         
             do {
                 let input = try AVCaptureDeviceInput(device: device)
                 session.addInput(input)
                 
-                session.sessionPreset = self.preferredSessionPreset
+                // video dimensions overrides session preset
+                var sessionPreset: String? = preferredSessionPreset
+                if preferredVideoDimensions != nil {
+                    let configured = device.configure(dimensions: preferredVideoDimensions!,
+                                                      frameRate: preferredVideoFrameRate,
+                                                      configured:{ format, frameRate in
+                                                        let d = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                                                        if d == self.preferredVideoDimensions {
+                                                            sessionPreset = nil
+                                                        }
+                    })
+                    if configured {
+                        sessionPreset = nil
+                    }
+                }
                 
+                // fallback to session preset
+                if sessionPreset != nil {
+                    session.sessionPreset = sessionPreset!
+                }
+            
                 let output = AVCaptureVideoDataOutput()
                 
                 output.videoSettings = [
@@ -151,6 +174,14 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
                 preferredSessionPreset = preset
                 break
                 
+            case .videoDimensions(let d):
+                preferredVideoDimensions = d
+                break
+                
+            case .videoFrameRate(let r):
+                preferredVideoFrameRate = r
+                break
+                
             case .videoBitrate(let bitrate):
                 preferredBitrate = bitrate
                 break
@@ -167,4 +198,54 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
         dataDelegate?.client(client: self, output: sampleBuffer)
     }
     
+}
+
+extension AVCaptureDevice {
+    func configure(dimensions: CMVideoDimensions,
+                   frameRate: Float64?,
+                   configured:((_ format: AVCaptureDeviceFormat, _ frameRate: Float64)->Void)? = nil) -> Bool
+    {
+        var result: Bool = false
+        var targetDuration: CMTime? = nil
+        var targetFormat: AVCaptureDeviceFormat? = nil
+        for f in self.formats.reversed() {
+            let format = f as! AVCaptureDeviceFormat
+            let d = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+            if d != dimensions {
+                continue
+            }
+            targetFormat = format
+            
+            guard let frameRate = frameRate else {
+                break
+            }
+            
+            if let _ = (format.videoSupportedFrameRateRanges as! [AVFrameRateRange]).index(where: { $0.maxFrameRate >= frameRate }) {
+                targetDuration = CMTime(value: 1, timescale: CMTimeScale(frameRate))
+                break
+            }
+        }
+        
+        if let targetFormat = targetFormat {
+            do {
+                try self.lockForConfiguration()
+                self.activeFormat = targetFormat
+                
+                if frameRate == nil {
+                    result = true
+                } else if targetDuration != nil {
+                    self.activeVideoMinFrameDuration = targetDuration!
+                    self.activeVideoMaxFrameDuration = targetDuration!
+                    result = true
+                }
+                self.unlockForConfiguration()
+            } catch (let error) {
+                print(error)
+            }
+        }
+        
+        let activeRate = Float64(CMTimeValue(self.activeVideoMaxFrameDuration.timescale) / self.activeVideoMaxFrameDuration.value)
+        configured?(self.activeFormat, activeRate)
+        return result
+    }
 }

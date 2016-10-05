@@ -15,6 +15,10 @@ public enum AVCaptureClientOptionKey {
     case videoBitrate(Int)
     case encodeAudio(Bool)
     case AVCaptureSessionPreset(String)
+    /// Overrides AVCaptureSessionPreset(String)
+    case videoDimensions(CMVideoDimensions)
+    /// Applicable only if videoDimensions(CMVideoDimensions) provided
+    case videoFrameRate(Float64)
 }
 
 public enum AVCaptureClientSettingKey {
