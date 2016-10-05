@@ -169,7 +169,6 @@
 				TargetAttributes = {
 					F47501101D96B74F001FA375 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M7ULFZ4G22;
 						ProvisioningStyle = Automatic;
 					};
 					F47501241D96B74F001FA375 = {
@@ -365,7 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M7ULFZ4G22;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AVCaptureSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSample;
@@ -378,7 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M7ULFZ4G22;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AVCaptureSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSample;
