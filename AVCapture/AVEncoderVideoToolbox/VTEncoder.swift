@@ -73,18 +73,18 @@ public struct H264ParameterSets {
  * 4. Call close() to finish
  */
 
-class VTEncoder {
+public class VTEncoder {
     var session: VTCompressionSession? = nil
     var parameterSets: H264ParameterSets? = nil
     
-    var onEncoded: VideoToolbox.VTCompressionOutputHandler? = nil
+    public var onEncoded: VideoToolbox.VTCompressionOutputHandler? = nil
     var onParameterSets: ((H264ParameterSets)->Void)? = nil
     
     static let defaultBitrate: Int = 1024 * 1024
     
     private var timingInfo: CMSampleTimingInfo = CMSampleTimingInfo()
     
-    init(width:Int32, height:Int32, bitrate:Int = defaultBitrate) {
+    public init(width:Int32, height:Int32, bitrate:Int = defaultBitrate) {
         session = VTCompressionSession.create(width: width, height: height)
         if let session = session {
             print("Encoder \(width) x \(height) @ \(bitrate)")
@@ -97,7 +97,7 @@ class VTEncoder {
         }
     }
     
-    func encode(sampleBuffer: CMSampleBuffer!) {
+    public func encode(sampleBuffer: CMSampleBuffer!) {
         guard let session = session else {
             // session not valid
             return
@@ -136,7 +136,7 @@ class VTEncoder {
         }
     }
     
-    func close() {
+    public func close() {
         guard let session = session else {
             // session not valid
             return
