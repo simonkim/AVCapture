@@ -56,11 +56,7 @@ class AudioCapture: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate, AVCa
     func stop() {
         
     }
-    
-    func set(value: Any, forKey key: AVCaptureClientSettingKey)
-    {
-        
-    }
+
     
     private var dataDelegate: AVCaptureClientDataDelegate? = nil
     func setDataDelegate(_ delegate: AVCaptureClientDataDelegate?)

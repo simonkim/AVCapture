@@ -17,18 +17,12 @@ public enum AVCaptureClientOptionKey {
     case AVCaptureSessionPreset(String)
 }
 
-public enum AVCaptureClientSettingKey {
-    case AVCaptureSessionPreset
-    case bitrate
-}
-
 public protocol AVCaptureClient {
     
     var mediaType: CMMediaType { get }
     func configure(session:AVCaptureSession)
     func stop()
     func reset(session:AVCaptureSession)
-    func set(value: Any, forKey key: AVCaptureClientSettingKey)
     func setDataDelegate(_ delegate: AVCaptureClientDataDelegate?)
     func set(options: [AVCaptureClientOptionKey])
 }

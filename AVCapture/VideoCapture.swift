@@ -115,23 +115,6 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
         return device
     }
     
-    func set(value: Any, forKey key: AVCaptureClientSettingKey)
-    {
-        switch(key) {
-        case .AVCaptureSessionPreset:
-            if value is String {
-                preferredSessionPreset = value as! String
-            }
-            break
-        case .bitrate:
-            if value is Int {
-                preferredBitrate = value as! Int
-            }
-            break
-
-        }
-    }
-    
     private var dataDelegate: AVCaptureClientDataDelegate? = nil
     func setDataDelegate(_ delegate: AVCaptureClientDataDelegate?)
     {
