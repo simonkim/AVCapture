@@ -176,7 +176,6 @@
 					};
 					F47501241D96B74F001FA375 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M42CUUMFKC;
 						ProvisioningStyle = Automatic;
 						TestTargetID = F47501101D96B74F001FA375;
 					};
@@ -395,7 +394,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = M42CUUMFKC;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AVCaptureSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSampleTests;
@@ -410,7 +409,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = M42CUUMFKC;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AVCaptureSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dzpub.AVCaptureSampleTests;
