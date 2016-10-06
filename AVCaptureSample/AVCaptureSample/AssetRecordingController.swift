@@ -65,8 +65,8 @@ class AssetRecordingController {
     public func toggleRecording(on: Bool) {
         if on {
             if let path = recordingFilePath(with: "recording.mov") {
-                let audioSettings = AVCWriterSettings(compress: true)
-                let videoSettings = AVCWriterVideoSettings(compress:false,
+                let audioSettings = AVCWriterSettings(compress: self.options.compressAudio)
+                let videoSettings = AVCWriterVideoSettings(compress:self.options.compressVideo,
                                                            width:Int(options.videoDimensions.width),
                                                            height: Int(options.videoDimensions.height))
                 
