@@ -123,6 +123,10 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
         }
     }
 
+    internal func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        print(String(format:"Drop: %2.3f", sampleBuffer.presentationTimeStamp.seconds))
+    }
+
     private func captureDevice(with position:AVCaptureDevicePosition) -> AVCaptureDevice? {
         var device: AVCaptureDevice? = nil
         

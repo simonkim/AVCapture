@@ -23,10 +23,6 @@ class StereoViewControl {
     
     fileprivate var rightPOVLayer: AVSampleBufferDisplayLayer? = nil
     
-    fileprivate static var renderQueue: DispatchQueue = {
-        return DispatchQueue(label: "render")
-    }()
-    
     init(previewLayer: AVCaptureVideoPreviewLayer,
          superlayer: CALayer,
          masterClock: CMClock)
@@ -98,7 +94,7 @@ class StereoViewControl {
     }
 
     func enqueue(_ sbuf: CMSampleBuffer) {
-        type(of:self).renderQueue.async {
+        if enabled {
             self.rightPOVLayer?.enqueue(sbuf)
         }
     }
