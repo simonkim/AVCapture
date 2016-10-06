@@ -40,7 +40,8 @@ class CaptureSettingsViewController: UITableViewController {
     @IBAction func actionBitrateChange(_ sender: AnyObject) {
     }
     
-    @IBAction func actionStereoView(_ sender: AnyObject) {
+    @IBAction func actionStereoView(_ sender: UISwitch) {
+        delegate?.captureSettings(self, didChange: .stereoView, value: sender.isOn)
     }
     
     @IBAction func actionRecordingChange(_ sender: UISwitch) {

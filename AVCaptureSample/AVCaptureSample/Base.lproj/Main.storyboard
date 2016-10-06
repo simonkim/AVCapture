@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11521.1" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11521.1" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11517.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -61,7 +61,7 @@
         <scene sceneID="xxg-nW-ze5">
             <objects>
                 <tableViewController id="wun-3m-b1m" customClass="CaptureSettingsViewController" customModule="AVCaptureSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="U9y-lu-OV8">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="U9y-lu-OV8">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="619"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.14615885416666666" colorSpace="calibratedWhite"/>
@@ -75,9 +75,11 @@
                                             <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4d-Rh-tQ3">
-                                                    <frame key="frameInset" minX="214" minY="8" width="121" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4d-Rh-tQ3">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="16n-Jz-7Rz"/>
+                                                        <constraint firstAttribute="width" constant="177" id="qgq-0P-4Vc"/>
+                                                    </constraints>
                                                     <segments>
                                                         <segment title="First"/>
                                                         <segment title="Second"/>
@@ -95,6 +97,11 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="u4d-Rh-tQ3" firstAttribute="bottom" secondItem="ycq-1G-lH2" secondAttribute="bottomMargin" id="EuW-oH-M3Y"/>
+                                                <constraint firstItem="u4d-Rh-tQ3" firstAttribute="top" secondItem="ycq-1G-lH2" secondAttribute="topMargin" id="ZTJ-MB-ns4"/>
+                                                <constraint firstItem="u4d-Rh-tQ3" firstAttribute="trailing" secondItem="ycq-1G-lH2" secondAttribute="trailingMargin" id="zFy-pO-iAR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -105,9 +112,11 @@
                                             <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="coo-tk-EJt">
-                                                    <frame key="frameInset" minX="157" minY="6" width="180" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="coo-tk-EJt">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="YqX-b5-APX"/>
+                                                        <constraint firstAttribute="width" constant="176" id="x5X-nO-AaL"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="actionVideoDimensions:" destination="wun-3m-b1m" eventType="valueChanged" id="XJZ-D7-uLa"/>
                                                     </connections>
@@ -120,6 +129,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="coo-tk-EJt" firstAttribute="top" secondItem="2fA-5U-y7X" secondAttribute="top" constant="6" id="AfS-gZ-XEN"/>
+                                                <constraint firstAttribute="trailing" secondItem="coo-tk-EJt" secondAttribute="trailing" constant="8" id="Mwr-Kf-oLv"/>
+                                                <constraint firstAttribute="bottom" secondItem="coo-tk-EJt" secondAttribute="bottom" constant="8" id="gxi-QR-oT5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -130,9 +144,11 @@
                                             <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UIb-wv-buZ">
-                                                    <frame key="frameInset" minX="157" minY="5" width="180" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UIb-wv-buZ">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="176" id="fKr-fG-5Xr"/>
+                                                        <constraint firstAttribute="height" constant="30" id="nRt-om-Xe3"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="actionBitrateChange:" destination="wun-3m-b1m" eventType="valueChanged" id="Vsu-27-OFY"/>
                                                     </connections>
@@ -145,6 +161,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="UIb-wv-buZ" secondAttribute="bottom" constant="9" id="DYH-rf-0ge"/>
+                                                <constraint firstItem="UIb-wv-buZ" firstAttribute="top" secondItem="gD0-Z1-Vt1" secondAttribute="top" constant="5" id="MBB-KT-tUG"/>
+                                                <constraint firstAttribute="trailing" secondItem="UIb-wv-buZ" secondAttribute="trailing" constant="8" id="qg2-eX-Uqc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -162,14 +183,21 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9jd-tS-uXA">
-                                                    <frame key="frameInset" minX="286" minY="7" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9jd-tS-uXA">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="Cry-Nx-Rs7"/>
+                                                        <constraint firstAttribute="width" constant="49" id="sCz-t3-4I1"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="actionStereoView:" destination="wun-3m-b1m" eventType="valueChanged" id="hAn-le-CUb"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="9jd-tS-uXA" secondAttribute="bottom" constant="6" id="8M4-R6-wli"/>
+                                                <constraint firstAttribute="trailing" secondItem="9jd-tS-uXA" secondAttribute="trailing" constant="8" id="Z1r-Wv-Wjf"/>
+                                                <constraint firstItem="9jd-tS-uXA" firstAttribute="top" secondItem="eZT-Lz-RP0" secondAttribute="top" constant="7" id="rgF-sl-ZwI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -180,12 +208,13 @@
                                             <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r9B-Io-TXR">
-                                                    <frame key="frameInset" minX="286" minY="7" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r9B-Io-TXR">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="EJi-cA-a9F"/>
+                                                        <constraint firstAttribute="height" constant="31" id="drS-1k-xRN"/>
+                                                    </constraints>
                                                     <connections>
                                                         <action selector="actionRecordingChange:" destination="wun-3m-b1m" eventType="valueChanged" id="6xx-HX-2Y2"/>
-                                                        <action selector="actionStereoView:" destination="wun-3m-b1m" eventType="valueChanged" id="DQA-Zr-ElA"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTO-we-WVX">
@@ -196,6 +225,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="r9B-Io-TXR" secondAttribute="trailing" constant="8" id="5dB-uC-TW5"/>
+                                                <constraint firstAttribute="bottom" secondItem="r9B-Io-TXR" secondAttribute="bottom" constant="6" id="OF3-5x-Vww"/>
+                                                <constraint firstItem="r9B-Io-TXR" firstAttribute="top" secondItem="3Za-wu-eIj" secondAttribute="top" constant="7" id="ccd-xo-NiG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -206,15 +240,22 @@
                                             <frame key="frameInset" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6Y-4u-3NS">
-                                                    <frame key="frameInset" minX="153" minY="6" width="37" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6Y-4u-3NS">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="119" id="BZl-MO-ole"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Lp8-TU-gbR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <state key="normal" title="Done"/>
                                                     <connections>
                                                         <action selector="actionDone:" destination="wun-3m-b1m" eventType="touchUpInside" id="dge-9b-ZOG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x6Y-4u-3NS" firstAttribute="centerX" secondItem="j2w-zw-J8q" secondAttribute="centerX" id="ceU-cv-tUj"/>
+                                                <constraint firstItem="x6Y-4u-3NS" firstAttribute="centerY" secondItem="j2w-zw-J8q" secondAttribute="centerY" id="iwN-xb-ojh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>

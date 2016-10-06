@@ -11,6 +11,12 @@ import AVCapture
 
 import AVFoundation
 
+struct AssetRecordingOptions {
+    var compressAudio: Bool
+    var compressVideo: Bool
+    var videoDimensions: CMVideoDimensions
+}
+
 class AssetRecordingController {
     
     var fileWriter: AVCFileWriter? = nil
@@ -23,7 +29,16 @@ class AssetRecordingController {
         return fileWriter != nil
     }
     
-    var videoSize: CGSize? = nil
+    var videoSize: CMVideoDimensions {
+        get {
+            return options.videoDimensions
+        }
+        set(newValue){
+            options.videoDimensions = newValue
+        }
+    }
+    
+    private var options: AssetRecordingOptions
     
     func recordingFilePath(with name:String) -> String? {
         let URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -40,12 +55,20 @@ class AssetRecordingController {
         return path
     }
     
+    public init(compressAudio: Bool = true, compressVideo: Bool = true)
+    {
+        self.options = AssetRecordingOptions(compressAudio: compressAudio,
+                                             compressVideo: compressVideo,
+                                             videoDimensions: CMVideoDimensions(width: 0, height: 0))
+    }
+    
     public func toggleRecording(on: Bool) {
         if on {
-            if let path = recordingFilePath(with: "recording.mov"),
-                let videoSize = self.videoSize {
+            if let path = recordingFilePath(with: "recording.mov") {
                 let audioSettings = AVCWriterSettings(compress: true)
-                let videoSettings = AVCWriterVideoSettings(compress:false, width:Int(videoSize.width), height: Int(videoSize.height))
+                let videoSettings = AVCWriterVideoSettings(compress:false,
+                                                           width:Int(options.videoDimensions.width),
+                                                           height: Int(options.videoDimensions.height))
                 
                 let writer = AVCFileWriter(URL: Foundation.URL(fileURLWithPath: path), videoSettings: videoSettings, audioSettings: audioSettings) {
                     sender, status, info in
