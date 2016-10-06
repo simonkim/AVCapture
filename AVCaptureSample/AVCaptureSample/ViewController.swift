@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     var captureService: AVCaptureService!
     var previewLayerSet: Bool = false
     
-    var recordingController: AssetRecordingController = AssetRecordingController()
+    var recordingController: AssetRecordingController = AssetRecordingController(compressAudio: true,
+                                                                                 compressVideo: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,9 @@ class ViewController: UIViewController {
         
         let serviceClient = AVCaptureClientSimple()
         serviceClient.dataDelegate = self
+        serviceClient.options = [
+            .encodeVideo(false)
+        ]
         captureService = AVCaptureService(client: serviceClient)
         if captureService.start() {
         }
@@ -117,7 +121,8 @@ extension ViewController: AVCaptureClientDataDelegate {
     
     func client(client: AVCaptureClient, didConfigureVideoSize videoSize: CGSize )
     {
-        recordingController.videoSize = videoSize
+        recordingController.videoSize = CMVideoDimensions(width: Int32(videoSize.width),
+                                                          height: Int32(videoSize.height))
     }
     
     func client(client: AVCaptureClient, output sampleBuffer: CMSampleBuffer )
