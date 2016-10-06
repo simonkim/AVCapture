@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     var recordingController: AssetRecordingController = AssetRecordingController(compressAudio: true,
                                                                                  compressVideo: true)
     
+    fileprivate var stereoViewControl: StereoViewControl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,9 @@ class ViewController: UIViewController {
         ]
         captureService = AVCaptureService(client: serviceClient)
         if captureService.start() {
+            stereoViewControl = StereoViewControl(previewLayer: captureService.previewLayer!,
+                                                  superlayer: preview.layer,
+                                                  masterClock: captureService.masterClock)
         }
     }
 
@@ -45,23 +50,18 @@ class ViewController: UIViewController {
             if !previewLayerSet {
                 preview.layer.addSublayer(previewLayer)
                 previewLayerSet = true
-                previewLayer.frame = preview.layer.bounds
+                self.updatePreviewLayout()
             }
         }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+
         super.viewWillTransition(to: size, with: coordinator)
 
-        guard let previewLayer = self.captureService.previewLayer else {
-            return
-        }
-
         coordinator.animate(alongsideTransition: { (coordinator) in
+            self.updatePreviewLayout()
         }) { (coordinator) in
-            let orientation = UIApplication.shared.statusBarOrientation
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.from(interfaceOrientation: orientation)
-            previewLayer.frame = self.preview.layer.bounds
         }
     }
     
@@ -70,6 +70,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func updatePreviewLayout() {
+        guard let previewLayer = self.captureService.previewLayer else {
+            return
+        }
+        let orientation = AVCaptureVideoOrientation.from(interfaceOrientation: UIApplication.shared.statusBarOrientation)
+        previewLayer.connection.videoOrientation = orientation
+        
+        if self.stereoViewControl != nil && self.stereoViewControl!.enabled {
+            self.stereoViewControl?.updatePreviewLayout(orientation: orientation)
+        } else {
+            previewLayer.frame = self.preview.layer.bounds
+        }
+    }
 }
 
 extension ViewController {
@@ -110,6 +123,16 @@ extension ViewController: CaptureSettingsDelegate {
                 }
             }
             break
+            
+        case .stereoView:
+            if let on = value as? Bool {
+                guard let stereoViewControl = stereoViewControl else {
+                    break
+                }
+                stereoViewControl.enabled = on
+                updatePreviewLayout()
+            }
+            break
         default:
             break
         }
@@ -127,6 +150,9 @@ extension ViewController: AVCaptureClientDataDelegate {
     
     func client(client: AVCaptureClient, output sampleBuffer: CMSampleBuffer )
     {
+        if client.mediaType == kCMMediaType_Video {
+            stereoViewControl?.enqueue(sampleBuffer)
+        }
         recordingController.append(sbuf: sampleBuffer)
     }
 }

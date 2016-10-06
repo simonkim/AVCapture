@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F434E1D21D990F2400E39E44 /* AssetRecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */; };
+		F44538E21DA5DA1C00FC6BA7 /* StereoViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44538E11DA5DA1C00FC6BA7 /* StereoViewControl.swift */; };
 		F47501151D96B74F001FA375 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501141D96B74F001FA375 /* AppDelegate.swift */; };
 		F47501171D96B74F001FA375 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501161D96B74F001FA375 /* ViewController.swift */; };
 		F475011A1D96B74F001FA375 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47501181D96B74F001FA375 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetRecordingController.swift; sourceTree = "<group>"; };
+		F44538E11DA5DA1C00FC6BA7 /* StereoViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoViewControl.swift; sourceTree = "<group>"; };
 		F47501111D96B74F001FA375 /* AVCaptureSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVCaptureSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47501141D96B74F001FA375 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47501161D96B74F001FA375 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				F47501161D96B74F001FA375 /* ViewController.swift */,
 				F434E1D11D990F2400E39E44 /* AssetRecordingController.swift */,
 				F4D3AABC1D97C0EB00294FB1 /* CaptureSettingsViewController.swift */,
+				F44538E11DA5DA1C00FC6BA7 /* StereoViewControl.swift */,
 				F47501181D96B74F001FA375 /* Main.storyboard */,
 				F475011B1D96B74F001FA375 /* Assets.xcassets */,
 				F475011D1D96B74F001FA375 /* LaunchScreen.storyboard */,
@@ -229,6 +232,7 @@
 				F47501171D96B74F001FA375 /* ViewController.swift in Sources */,
 				F47501151D96B74F001FA375 /* AppDelegate.swift in Sources */,
 				F434E1D21D990F2400E39E44 /* AssetRecordingController.swift in Sources */,
+				F44538E21DA5DA1C00FC6BA7 /* StereoViewControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
