@@ -95,12 +95,15 @@ class StereoViewControl {
             superlayer.addSublayer(rightPOVLayer!)
         } else {
             rightPOVLayer?.removeFromSuperlayer()
+            rightPOVLayer?.flushAndRemoveImage()
         }
     }
 
     func enqueue(_ sbuf: CMSampleBuffer) {
         if enabled {
             self.rightPOVLayer?.enqueue(sbuf)
+            // FIXME: flush() once came back from background to avoid 
+            //        rightPOVLayer?.status == .failed
         }
     }
 }
