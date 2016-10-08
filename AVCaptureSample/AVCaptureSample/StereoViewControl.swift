@@ -43,15 +43,20 @@ class StereoViewControl {
     }
 
     /// horizontal distance scale factor from center for each side
-    var horzDistanceScale: CGFloat = 0.05
+    var horzDistanceScale: CGFloat = 0.00
+    var vertTopMarginScale: CGFloat = 0.15 // xiaomi vr play offset: 0.15
+    var sizeScale: CGFloat = 0.88          // iPhone 7 plus size scale: 0.88
 
     func updatePreviewLayout(orientation: AVCaptureVideoOrientation? = nil) {
         let superbounds = superlayer.bounds
         
         let width = (superbounds.width / 2)
         let hgap = width * horzDistanceScale
-        let left = CGRect(origin: superbounds.origin, size: CGSize(width: width - hgap, height: superbounds.height))
-        let origin = CGPoint(x: left.origin.x + width + hgap * 2, y:left.origin.y)
+        var origin = superbounds.origin
+        origin.y += superbounds.size.height * vertTopMarginScale
+        origin.x += (superbounds.size.width / 2.0)  * (1.0 - sizeScale) / 2
+        let left = CGRect(origin: origin, size: CGSize(width: (width - hgap) * sizeScale, height: superbounds.height * sizeScale))
+        origin = CGPoint(x: left.origin.x + width + hgap * 2, y:left.origin.y)
         let right = CGRect(origin: origin, size: left.size)
         
         capturePreviewLayer?.frame = left
