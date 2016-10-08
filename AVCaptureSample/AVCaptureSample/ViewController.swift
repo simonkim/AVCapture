@@ -27,9 +27,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // double-tap shortcut to start recording
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(didTapPreviewSurface(_:)))
+        doubleTap.numberOfTapsRequired = 2
+        preview.addGestureRecognizer(doubleTap)
+
         // tap to show the settings
         settingsContainer.isHidden = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapPreviewSurface(_:)))
+        gesture.require(toFail: doubleTap)
         preview.addGestureRecognizer(gesture)
         
         let serviceClient = AVCaptureClientSimple()
@@ -92,6 +98,7 @@ extension ViewController {
         if segue.identifier == "captureSettings" {
             let dest = segue.destination as! CaptureSettingsViewController
             dest.delegate = self
+            dest.set(key:.recording, value: recordingController.recording)
         }
     }
 }
@@ -99,9 +106,21 @@ extension ViewController {
 // MARK: Capture Settings
 extension ViewController: CaptureSettingsDelegate {
 
-    func didTapPreviewSurface(_ sender: UIGestureRecognizer) {
-        UIView.animate(withDuration: 0.5) {
-            self.settingsContainer.isHidden = false
+    func didTapPreviewSurface(_ sender: UITapGestureRecognizer) {
+        
+        if sender.numberOfTapsRequired == 2 {
+            toggleRecording(on: !recordingController.recording)
+        } else {
+            for vc in self.childViewControllers {
+                if vc is CaptureSettingsViewController {
+                    let settingsViewController = vc as! CaptureSettingsViewController
+                    settingsViewController.set(key:.recording, value: recordingController.recording)
+                }
+            }
+            
+            UIView.animate(withDuration: 0.5) {
+                self.settingsContainer.isHidden = false
+            }
         }
     }
 
@@ -116,13 +135,7 @@ extension ViewController: CaptureSettingsDelegate {
         switch(key) {
         case .recording:
             if let on = value as? Bool {
-                recordingController.toggleRecording(on: on)
-                activityRecording.isHidden = !on
-                if on {
-                    activityRecording.startAnimating()
-                } else {
-                    activityRecording.stopAnimating()
-                }
+                toggleRecording(on: on)
             }
             break
             
@@ -140,6 +153,16 @@ extension ViewController: CaptureSettingsDelegate {
         }
     }
     
+    func toggleRecording(on: Bool) {
+        
+        recordingController.toggleRecording(on: on)
+        activityRecording.isHidden = !on
+        if on {
+            activityRecording.startAnimating()
+        } else {
+            activityRecording.stopAnimating()
+        }
+    }
 }
 
 extension ViewController: AVCaptureClientDataDelegate {
