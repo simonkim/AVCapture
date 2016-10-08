@@ -17,6 +17,21 @@ struct AssetRecordingOptions {
     var videoDimensions: CMVideoDimensions
 }
 
+enum RecordingUserDefaultKey: String {
+    case recordingSequence = "recordingSeq" // Int
+    
+    /// Get the next sequence number from user defaults and increase it by 1 for next call
+    static var nextRecordingSequenceNumber: Int
+    {
+        let defaults = UserDefaults()
+        let result = defaults.integer(forKey: recordingSequence.rawValue)
+        defaults.set(result + 1, forKey: recordingSequence.rawValue)
+        defaults.synchronize()
+        
+        return result
+    }
+}
+
 class AssetRecordingController {
     
     var fileWriter: AVCFileWriter? = nil
@@ -64,7 +79,8 @@ class AssetRecordingController {
     
     public func toggleRecording(on: Bool) {
         if on {
-            if let path = recordingFilePath(with: "recording.mov") {
+            let seq = RecordingUserDefaultKey.nextRecordingSequenceNumber
+            if let path = recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {
                 let audioSettings = AVCWriterSettings(compress: self.options.compressAudio)
                 let videoSettings = AVCWriterVideoSettings(compress:self.options.compressVideo,
                                                            width:Int(options.videoDimensions.width),
