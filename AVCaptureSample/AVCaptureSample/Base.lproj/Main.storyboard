@@ -37,13 +37,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zol-bd-nrz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0wJ-uV-47v"/>
+                            <constraint firstItem="zol-bd-nrz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.5" id="0wJ-uV-47v"/>
                             <constraint firstItem="OsD-ug-nIv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="KvI-fE-EOO"/>
                             <constraint firstItem="cYx-xX-anw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LoR-ew-Rgn"/>
                             <constraint firstItem="cYx-xX-anw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YGf-QF-PRD"/>
                             <constraint firstItem="OsD-ug-nIv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ff7-2B-vxl"/>
                             <constraint firstAttribute="trailing" secondItem="cYx-xX-anw" secondAttribute="trailing" id="i7h-c1-rdy"/>
-                            <constraint firstItem="zol-bd-nrz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.7" id="j4X-TN-lHu"/>
+                            <constraint firstItem="zol-bd-nrz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.9" id="j4X-TN-lHu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cYx-xX-anw" secondAttribute="bottom" id="pUH-QM-Fnn"/>
                             <constraint firstItem="OsD-ug-nIv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rBh-K4-6co"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OsD-ug-nIv" secondAttribute="bottom" constant="20" id="ziZ-8R-AYi"/>
