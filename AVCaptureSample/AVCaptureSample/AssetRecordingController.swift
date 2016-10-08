@@ -64,22 +64,7 @@ class AssetRecordingController {
     }
     
     private var options: AssetRecordingOptions
-    
-    func recordingFilePath(with name:String) -> String? {
-        let URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let path = URL.appendingPathComponent(name).path
         
-        if FileManager.default.fileExists(atPath: path) {
-            do {
-                try FileManager.default.removeItem(atPath: path)
-            } catch {
-                print( "Can't remove file: \(path)")
-                return nil
-            }
-        }
-        return path
-    }
-    
     public init(compressAudio: Bool = true, compressVideo: Bool = true)
     {
         self.options = AssetRecordingOptions(compressAudio: compressAudio,
@@ -90,7 +75,7 @@ class AssetRecordingController {
     private func toggleRecording(on: Bool) {
         if on {
             let seq = RecordingUserDefaultKey.nextRecordingSequenceNumber
-            if let path = recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {
+            if let path = RecordingsCollection.recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {
                 let audioSettings = AVCWriterSettings(compress: self.options.compressAudio)
                 let videoSettings = AVCWriterVideoSettings(compress:self.options.compressVideo,
                                                            width:Int(options.videoDimensions.width),
