@@ -10,6 +10,10 @@ import UIKit
 import AVCapture
 import AVFoundation
 
+struct CaptureStatus {
+    var stereoViewEnabled: Bool = false
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var preview: UIView!
@@ -17,12 +21,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityRecording: UIActivityIndicatorView!
     
     var captureService: AVCaptureService!
-    var previewLayerSet: Bool = false
     
     var recordingController: AssetRecordingController = AssetRecordingController(compressAudio: true,
                                                                                  compressVideo: true)
+    fileprivate var _captureStarted = false
+    /// Capture status just before stop. Status used to restore on restart.
+    fileprivate var _captureStopStatus: CaptureStatus = CaptureStatus()
     
     fileprivate var stereoViewControl: StereoViewControl?
+    
+
+    fileprivate var captureSettingsViewController: CaptureSettingsViewController? {
+        for vc in self.childViewControllers {
+            if vc is CaptureSettingsViewController {
+                return (vc as! CaptureSettingsViewController)
+            }
+        }
+        return nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,18 +62,14 @@ class ViewController: UIViewController {
             .videoFrameRate(60)
         ]
         captureService = AVCaptureService(client: serviceClient)
-        if captureService.start() {
-            stereoViewControl = StereoViewControl(previewLayer: captureService.previewLayer!,
-                                                  superlayer: preview.layer,
-                                                  masterClock: captureService.masterClock)
-        }
+        
+        startCapture(captureService: captureService, layout: false)
     }
 
     override func viewDidLayoutSubviews() {
         if let previewLayer = captureService.previewLayer {
-            if !previewLayerSet {
+            if previewLayer.superlayer != preview.layer {
                 preview.layer.addSublayer(previewLayer)
-                previewLayerSet = true
                 self.updatePreviewLayout()
             }
         }
@@ -79,9 +91,14 @@ class ViewController: UIViewController {
     }
     
     func updatePreviewLayout() {
+        if _captureStarted == false {
+            return
+        }
+
         guard let previewLayer = self.captureService.previewLayer else {
             return
         }
+        
         let orientation = AVCaptureVideoOrientation.from(interfaceOrientation: UIApplication.shared.statusBarOrientation)
         previewLayer.connection.videoOrientation = orientation
         
@@ -91,31 +108,15 @@ class ViewController: UIViewController {
             previewLayer.frame = self.preview.layer.bounds
         }
     }
-}
-
-extension ViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "captureSettings" {
-            let dest = segue.destination as! CaptureSettingsViewController
-            dest.delegate = self
-            dest.set(key:.recording, value: recordingController.recording)
-        }
-    }
-}
-
-// MARK: Capture Settings
-extension ViewController: CaptureSettingsDelegate {
-
+    
+    
     func didTapPreviewSurface(_ sender: UITapGestureRecognizer) {
         
         if sender.numberOfTapsRequired == 2 {
             toggleRecording(on: !recordingController.recording)
         } else {
-            for vc in self.childViewControllers {
-                if vc is CaptureSettingsViewController {
-                    let settingsViewController = vc as! CaptureSettingsViewController
-                    settingsViewController.set(key:.recording, value: recordingController.recording)
-                }
+            if let vc = captureSettingsViewController {
+                vc.set(key:.recording, value: recordingController.recording)
             }
             
             UIView.animate(withDuration: 0.5) {
@@ -123,10 +124,83 @@ extension ViewController: CaptureSettingsDelegate {
             }
         }
     }
+    
+    // MARK: Capture Control
+    func startCapture(captureService: AVCaptureService, layout: Bool = true) {
+        if captureService.start() {
+            stereoViewControl = StereoViewControl(previewLayer: captureService.previewLayer!,
+                                                  superlayer: preview.layer,
+                                                  masterClock: captureService.masterClock)
+            _captureStarted = true
+            
+            // restore last capture status
+            let stereoViewEnabled = _captureStopStatus.stereoViewEnabled
+            stereoViewControl?.enabled = stereoViewEnabled
+            if let vc = captureSettingsViewController {
+                vc.set(key:.stereoView, value: stereoViewEnabled)
+            }
 
-    func captureSettings(done: CaptureSettingsViewController) {
-        UIView.animate(withDuration: 0.5) { 
-            self.settingsContainer.isHidden = true
+            // optional layout
+            if layout {
+                if let previewLayer = self.captureService.previewLayer {
+                    if previewLayer.superlayer != self.preview.layer {
+                        self.preview.layer.addSublayer(previewLayer)
+                    }
+                    self.updatePreviewLayout()
+                }
+            }
+        }
+    }
+    
+    func stopCapture(captureService: AVCaptureService) {
+        
+        // Remember the last status
+        _captureStopStatus.stereoViewEnabled = (stereoViewControl != nil && stereoViewControl!.enabled)
+        
+        if recordingController.recording {
+            toggleRecording(on: !recordingController.recording)
+        }
+        stereoViewControl?.enabled = false
+        captureService.stop()
+        
+        _captureStarted = false
+    }
+}
+
+enum SegueID: String {
+    case captureSettings = "captureSettings"
+    case videoCollection = "videoCollection"
+}
+
+extension ViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueID.captureSettings.rawValue {
+            let dest = segue.destination as! CaptureSettingsViewController
+            dest.delegate = self
+            dest.set(key:.recording, value: recordingController.recording)
+        } else if segue.identifier == SegueID.videoCollection.rawValue {
+            let destNav = segue.destination as! UINavigationController
+            let dest = destNav.topViewController as! RecordingsCollectionViewController
+            dest.delegate = self
+        }
+    }
+}
+
+// MARK: Capture Settings
+extension ViewController: CaptureSettingsDelegate {
+
+    func captureSettings(_ settingsViewController: CaptureSettingsViewController, didDismissWithOption option: CaptureSettingsDismissOption) {
+
+        self.settingsContainer.isHidden = true
+        
+        if option == .viewRecordings {
+            self.performSegue(withIdentifier: SegueID.videoCollection.rawValue, sender: self)
+            
+            // 0.5 delay to hide screen distortion while stopping capture
+            // Not animating
+            UIView.animate(withDuration: 0.5, animations: {}, completion: { (finished) in
+                self.stopCapture(captureService: self.captureService)
+            })
         }
     }
     
@@ -155,7 +229,7 @@ extension ViewController: CaptureSettingsDelegate {
     
     func toggleRecording(on: Bool) {
         
-        recordingController.toggleRecording(on: on)
+        recordingController.recording = on
         activityRecording.isHidden = !on
         if on {
             activityRecording.startAnimating()
@@ -182,3 +256,11 @@ extension ViewController: AVCaptureClientDataDelegate {
     }
 }
 
+extension ViewController: RecordingsCollectionViewControllerDelegate {
+    func recordingCollectionDidDismiss(_ viewController: RecordingsCollectionViewController)
+    {
+        self.startCapture(captureService: self.captureService)
+        dismiss(animated: true) {
+        }
+    }
+}

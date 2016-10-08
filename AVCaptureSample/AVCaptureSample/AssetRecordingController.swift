@@ -40,11 +40,21 @@ class AssetRecordingController {
             return DispatchQueue(label: "writer")
     }()
     
-    var recording: Bool {
-        return fileWriter != nil
+    /// start or stop recording
+    public var recording: Bool {
+        get {
+            return fileWriter != nil
+        }
+        
+        set(newValue) {
+            toggleRecording(on: newValue)
+        }
     }
     
-    var videoSize: CMVideoDimensions {
+    /// Returns video dimensions currently set. Default is (0, 0)
+    /// Set video dimenstions through this property before starting recording by 
+    /// setting true to 'recording' property
+    public var videoSize: CMVideoDimensions {
         get {
             return options.videoDimensions
         }
@@ -54,22 +64,7 @@ class AssetRecordingController {
     }
     
     private var options: AssetRecordingOptions
-    
-    func recordingFilePath(with name:String) -> String? {
-        let URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let path = URL.appendingPathComponent(name).path
         
-        if FileManager.default.fileExists(atPath: path) {
-            do {
-                try FileManager.default.removeItem(atPath: path)
-            } catch {
-                print( "Can't remove file: \(path)")
-                return nil
-            }
-        }
-        return path
-    }
-    
     public init(compressAudio: Bool = true, compressVideo: Bool = true)
     {
         self.options = AssetRecordingOptions(compressAudio: compressAudio,
@@ -77,10 +72,10 @@ class AssetRecordingController {
                                              videoDimensions: CMVideoDimensions(width: 0, height: 0))
     }
     
-    public func toggleRecording(on: Bool) {
+    private func toggleRecording(on: Bool) {
         if on {
             let seq = RecordingUserDefaultKey.nextRecordingSequenceNumber
-            if let path = recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {
+            if let path = RecordingsCollection.recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {
                 let audioSettings = AVCWriterSettings(compress: self.options.compressAudio)
                 let videoSettings = AVCWriterVideoSettings(compress:self.options.compressVideo,
                                                            width:Int(options.videoDimensions.width),

@@ -18,14 +18,21 @@ enum CaptureSettingsKey {
     case recording          // Bool
 }
 
+enum CaptureSettingsDismissOption {
+    case none
+    case viewRecordings
+}
+
 protocol CaptureSettingsDelegate {
-    func captureSettings(done: CaptureSettingsViewController)
+    func captureSettings(_ settingsViewController: CaptureSettingsViewController,
+                         didDismissWithOption option: CaptureSettingsDismissOption)
     func captureSettings(_ controller:CaptureSettingsViewController, didChange key: CaptureSettingsKey, value: Any? )
 }
 
 class CaptureSettingsViewController: UITableViewController {
     
     @IBOutlet weak var switchRecording: UISwitch!
+    @IBOutlet weak var switchStereoView: UISwitch!
     var delegate: CaptureSettingsDelegate?
     
     fileprivate var _settings: [CaptureSettingsKey: Any] = [:]
@@ -39,7 +46,7 @@ class CaptureSettingsViewController: UITableViewController {
     }
     
     @IBAction func actionDone(_ sender: AnyObject) {
-        delegate?.captureSettings(done: self)
+        delegate?.captureSettings(self, didDismissWithOption: .none)
     }
     
     @IBAction func actionCameraPositionChange(_ sender: AnyObject) {
@@ -59,9 +66,13 @@ class CaptureSettingsViewController: UITableViewController {
         delegate?.captureSettings(self, didChange: .recording, value: sender.isOn)
     }
     
+    @IBAction func actionViewRecordings(_ sender: AnyObject) {
+        delegate?.captureSettings(self, didDismissWithOption: .viewRecordings)
+    }
+    
     // MARK: Gesture
     func didTapSurface(_ sender: UITapGestureRecognizer) {
-        delegate?.captureSettings(done: self)
+        delegate?.captureSettings(self, didDismissWithOption: .none)
     }
 }
 
@@ -81,9 +92,19 @@ extension CaptureSettingsViewController {
     func updateUI(withSettings settings: [CaptureSettingsKey: Any])
     {
         for setting in settings {
-            if setting.key == .recording {
+            
+            switch(setting.key) {
+            case .recording:
                 switchRecording.isOn = setting.value as! Bool
+                break
+            case .stereoView:
+                switchStereoView.isOn = setting.value as! Bool
+                break
+                
+            default:
+                break
             }
+            
         }
     }
 }

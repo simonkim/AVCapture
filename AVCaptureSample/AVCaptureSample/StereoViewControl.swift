@@ -30,8 +30,7 @@ class StereoViewControl {
         
         capturePreviewLayer = previewLayer
         self.superlayer = superlayer
-        self.superlayer.addSublayer(previewLayer)
-        
+        // presume superlayer == previewLayer.superlayer, where right eye layer will be added too
         self.masterClock = masterClock
     }
     
@@ -95,12 +94,15 @@ class StereoViewControl {
             superlayer.addSublayer(rightPOVLayer!)
         } else {
             rightPOVLayer?.removeFromSuperlayer()
+            rightPOVLayer?.flushAndRemoveImage()
         }
     }
 
     func enqueue(_ sbuf: CMSampleBuffer) {
         if enabled {
             self.rightPOVLayer?.enqueue(sbuf)
+            // FIXME: flush() once came back from background to avoid 
+            //        rightPOVLayer?.status == .failed
         }
     }
 }

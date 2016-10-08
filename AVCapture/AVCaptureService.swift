@@ -70,8 +70,10 @@ public class AVCaptureService {
         if succeed {
             _session.startRunning()
             
-            _preview = AVCaptureVideoPreviewLayer.init(session: _session)
-            _preview?.videoGravity = AVLayerVideoGravityResizeAspect
+            if _preview == nil {
+                _preview = AVCaptureVideoPreviewLayer.init(session: _session)
+                _preview?.videoGravity = AVLayerVideoGravityResizeAspect
+            }
             
             _sessionStarted = true
         }
@@ -89,6 +91,7 @@ public class AVCaptureService {
     public func stop()
     {
         if _sessionStarted {
+            _preview?.removeFromSuperlayer()
             
             serviceClient.captureService(self, reset: _session)
             
@@ -102,6 +105,7 @@ public class AVCaptureService {
             
             _session.stopRunning()
             
+            _sessionStarted = false            
         }
     }
 }
