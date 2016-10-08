@@ -40,11 +40,21 @@ class AssetRecordingController {
             return DispatchQueue(label: "writer")
     }()
     
-    var recording: Bool {
-        return fileWriter != nil
+    /// start or stop recording
+    public var recording: Bool {
+        get {
+            return fileWriter != nil
+        }
+        
+        set(newValue) {
+            toggleRecording(on: newValue)
+        }
     }
     
-    var videoSize: CMVideoDimensions {
+    /// Returns video dimensions currently set. Default is (0, 0)
+    /// Set video dimenstions through this property before starting recording by 
+    /// setting true to 'recording' property
+    public var videoSize: CMVideoDimensions {
         get {
             return options.videoDimensions
         }
@@ -77,7 +87,7 @@ class AssetRecordingController {
                                              videoDimensions: CMVideoDimensions(width: 0, height: 0))
     }
     
-    public func toggleRecording(on: Bool) {
+    private func toggleRecording(on: Bool) {
         if on {
             let seq = RecordingUserDefaultKey.nextRecordingSequenceNumber
             if let path = recordingFilePath(with: String(format:"recording-%03d.mov", seq)) {

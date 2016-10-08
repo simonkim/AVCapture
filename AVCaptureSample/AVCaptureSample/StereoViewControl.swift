@@ -30,8 +30,7 @@ class StereoViewControl {
         
         capturePreviewLayer = previewLayer
         self.superlayer = superlayer
-        self.superlayer.addSublayer(previewLayer)
-        
+        // presume superlayer == previewLayer.superlayer, where right eye layer will be added too
         self.masterClock = masterClock
     }
     

@@ -91,6 +91,7 @@ public class AVCaptureService {
     public func stop()
     {
         if _sessionStarted {
+            _preview?.removeFromSuperlayer()
             
             serviceClient.captureService(self, reset: _session)
             
@@ -102,7 +103,6 @@ public class AVCaptureService {
                 _session.removeOutput(output as! AVCaptureOutput)
             }
             
-            _preview?.removeFromSuperlayer()
             _session.stopRunning()
             
             _sessionStarted = false            
