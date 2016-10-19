@@ -82,7 +82,7 @@ public struct AVCWriterVideoSettings {
     }
 }
 
-public class AVCFileWriter {
+public class AVCFileWriter: AVCaptureLogger {
     
     public enum StatusKey: String {
         case initialized = "initialized"            // fileURL, width, height, compress
@@ -149,6 +149,7 @@ public class AVCFileWriter {
                 onStatus:@escaping ((_ sender: AVCFileWriter, _ status: StatusKey, _ info:[InfoKey: Any]) -> Void) = { _, _, _ in }) {
         
         
+        self.on = onStatus
         do {
             let writer = try AVAssetWriter(outputURL: URL, fileType: AVFileTypeQuickTimeMovie)
             
@@ -166,15 +167,12 @@ public class AVCFileWriter {
             status = .initialized
             statusInfo = [.fileURL: URL]
         } catch(let error) {
-            print("Error \(error)")
             
             status = .writerInitFailed
             statusInfo = [.error : error]
+            logE("\(error)")
         }
-        self.on = onStatus
     }
-    
-
     
     public func append(sbuf sampleBuffer: CMSampleBuffer) {
         
@@ -183,7 +181,7 @@ public class AVCFileWriter {
         }
         
         guard let writer = self.writer else {
-            print("writer not initialized")
+            logE("writer not initialized")
             return
         }
         
@@ -235,9 +233,15 @@ public class AVCFileWriter {
                     firstAudioSampleHandled = true
                 }
                 */
+
+                var log = String(format:"Append %@ sample pts: %2.3f", mediaType == kCMMediaType_Video ? "video" : "audio", pts.seconds)
+                if lastAudioPTS != nil && lastVideoPTS != nil {
+                    log = String(format:"%@ diff: %2.3f", log, lastAudioPTS!.seconds - lastVideoPTS!.seconds)
+                }
+                logD(log)
                 
                 if !input.append(sampleBuffer) {
-                    print(String(format:"Failed appending sample at pts:%2.3f", pts.seconds))
+                    logE(String(format:"Failed appending sample at pts:%2.3f", pts.seconds))
                 } else {
                     if mediaType == kCMMediaType_Video {
                         lastVideoPTS = pts
