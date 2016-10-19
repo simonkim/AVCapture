@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F434E1B81D98DD9B00E39E44 /* AVCFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */; };
 		F47501391D96C3AB001FA375 /* AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */; };
+		F4AACCA01DB72A16007ADB74 /* AVCaptureLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AACC9F1DB72A16007ADB74 /* AVCaptureLogger.swift */; };
 		F4F183851D93FC860064974E /* AVCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F1837B1D93FC860064974E /* AVCapture.framework */; };
 		F4F1838A1D93FC860064974E /* AVCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F183891D93FC860064974E /* AVCaptureTests.swift */; };
 		F4F1838C1D93FC860064974E /* AVCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = F4F1837E1D93FC860064974E /* AVCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		F434E1B71D98DD9B00E39E44 /* AVCFileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCFileWriter.swift; sourceTree = "<group>"; };
 		F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureVideoOrientation.swift; sourceTree = "<group>"; };
+		F4AACC9F1DB72A16007ADB74 /* AVCaptureLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureLogger.swift; sourceTree = "<group>"; };
 		F4F1837B1D93FC860064974E /* AVCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AVCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F1837E1D93FC860064974E /* AVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCapture.h; sourceTree = "<group>"; };
 		F4F1837F1D93FC860064974E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				F4F1839E1D93FCBE0064974E /* BitrateMeasure.swift */,
 				F47501381D96C3AB001FA375 /* AVCaptureVideoOrientation.swift */,
+				F4AACC9F1DB72A16007ADB74 /* AVCaptureLogger.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				F4F183A21D93FCBE0064974E /* AVCaptureClient.swift in Sources */,
 				F4F183A61D93FCBE0064974E /* VTCompressionSession.swift in Sources */,
 				F4F183A11D93FCBE0064974E /* AudioCapture.swift in Sources */,
+				F4AACCA01DB72A16007ADB74 /* AVCaptureLogger.swift in Sources */,
 				F47501391D96C3AB001FA375 /* AVCaptureVideoOrientation.swift in Sources */,
 				F4F183A91D93FCBE0064974E /* VideoCapture.swift in Sources */,
 				F4F183A81D93FCBE0064974E /* BitrateMeasure.swift in Sources */,

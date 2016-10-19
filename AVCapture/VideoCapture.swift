@@ -17,7 +17,7 @@ class VideoCapture: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCa
     var preferredDevicePosition = AVCaptureDevicePosition.back
     var preferredSessionPreset = AVCaptureSessionPreset1280x720
     var preferredBitrate: Int = 1024 * 1024
-    var preferredVideoDimensions: CMVideoDimensions? = CMVideoDimensions(width: 1280, height: 720)
+    var preferredVideoDimensions: CMVideoDimensions? = nil; // CMVideoDimensions(width: 1280, height: 720)
     var preferredVideoFrameRate: Float64? = 30.0
     
     private var encode: Bool = false
