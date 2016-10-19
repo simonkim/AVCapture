@@ -111,6 +111,9 @@ public class AVCFileWriter {
     public let statusInfo:[InfoKey: Any]
     
     fileprivate var firstAudioSampleHandled: Bool = false
+    fileprivate var finishing = false
+    fileprivate var lastAudioPTS: CMTime?
+    fileprivate var lastVideoPTS: CMTime?
     
     static func writerInputVideo(settings: AVCWriterVideoSettings?) -> AVAssetWriterInput? {
         guard let settings = settings else {
@@ -174,6 +177,11 @@ public class AVCFileWriter {
 
     
     public func append(sbuf sampleBuffer: CMSampleBuffer) {
+        
+        if finishing {
+            return
+        }
+        
         guard let writer = self.writer else {
             print("writer not initialized")
             return
@@ -184,11 +192,20 @@ public class AVCFileWriter {
         }
         
         let mediaType = CMFormatDescriptionGetMediaType(fd)
+        let pts = sampleBuffer.presentationTimeStamp
+        
+        // discard sample timestamped eariler than last appended
+        let lastPTS = (mediaType == kCMMediaType_Video
+                        ? lastVideoPTS
+                        : (mediaType == kCMMediaType_Audio ? lastAudioPTS : nil))
+        if lastPTS != nil && lastPTS!.seconds > pts.seconds {
+            return
+        }
         
         if CMSampleBufferDataIsReady(sampleBuffer) {
             if writer.status == .unknown {
                 if writer.startWriting() {
-                    let startTime = sampleBuffer.presentationTimeStamp
+                    let startTime = pts
                     writer.startSession(atSourceTime: startTime)
                     //logger.d(String(format:"WRITER Start session at pts:%2.2f", startTime.seconds))
                 } else {
@@ -219,13 +236,22 @@ public class AVCFileWriter {
                 }
                 */
                 
-                input.append(sampleBuffer)
+                if !input.append(sampleBuffer) {
+                    print(String(format:"Failed appending sample at pts:%2.3f", pts.seconds))
+                } else {
+                    if mediaType == kCMMediaType_Video {
+                        lastVideoPTS = pts
+                    } else if mediaType == kCMMediaType_Audio {
+                        lastAudioPTS = pts
+                    }
+                }
             }
         }
     }
     
     public func finish(silent:Bool = false) {
-        if let writer = self.writer {
+        if let writer = self.writer, !finishing {
+            finishing = true
             writer.finishWriting(completionHandler: {
                 if !silent {
                     self.on(self,.finished, [:])
